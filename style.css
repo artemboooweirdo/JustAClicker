@@ -1,0 +1,23 @@
+/* This is the style file for the Clicker Layout */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #FFFFFF;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#clickCount, #debugText, #upgrade1Cost {
+    font-weight: bold;
+}
