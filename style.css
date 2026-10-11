@@ -29,7 +29,7 @@ button {
 #clickerButton {
     cursor: pointer;
     width: 100px; /* Adjust the size of the clicker image */
-    height: auto;
-    image-rendering: pixelated;
+    height: auto; /* Maintains the aspect ratio of the image */
+    image-rendering: pixelated; /* Ensures the image remains sharp when scaled */
     image-rendering: crisp-edges; /* Ensures the image remains sharp when scaled */
 }
