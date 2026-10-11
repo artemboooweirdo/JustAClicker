@@ -5,6 +5,7 @@
 let c = 0;
 const audio = new Audio('Defeat.mp3');
 const array = [1,2,"john"];
+
 let u1 = 0;
 let u1Cost = 1;
 let autoU1 = 0;
@@ -13,7 +14,16 @@ let upgradeCPSCost = 1;
 const data = {
     clicks: c,
     clicksPerSecond: cps,
+    upgrades: {
+        u1: u1,
+        // object within an object?? coolio
+    },
+    CPSUpgrades: {
+        autoU1: autoU1
+    }
 }
+
+// DOM element references for buttons and displays
 const upgrade1Button = document.getElementById("upgrade1");
 const upgrade1CostDisplay = document.getElementById("upgrade1Cost");
 const debugText = document.getElementById("debugText");
@@ -25,6 +35,10 @@ const upgradeCPSCostDisplay = document.getElementById("upgradeCPSCost");
 const startSongButton = document.getElementById("startSong");
 const stopSongButton = document.getElementById("stopSong");
 const saveDataButton = document.getElementById("saveData");
+
+
+
+
 startSongButton.addEventListener("click", () => {
     audio.play();
 });
@@ -60,8 +74,10 @@ cpsUpgrade1Button.addEventListener("click", () => {
 });
 saveDataButton.addEventListener("click", () => {
     localStorage.setItem("clickerData", JSON.stringify(data));
+    // localStorage is not working
     alert("Data saved!");
 });
+
 
 
 
@@ -69,10 +85,9 @@ saveDataButton.addEventListener("click", () => {
 setInterval(() => {
     c += cps; // automatically add clicks based on the number of upgrades owned;
     clickCountDisplay.textContent = c;
+    debugText.textContent = `${JSON.stringify(data)}`;
 }, 1000);
 
 
 
 debugText.textContent = `${JSON.stringify(data)}`;
-
-alert(`You have ${c} clicks!`);
