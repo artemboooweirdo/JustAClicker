@@ -24,13 +24,13 @@ const data = {
 }
 
 // DOM element references for buttons and displays
-const upgrade1Button = document.getElementById("upgrade1");
+const upgrade1Button = document.getElementById("bigger-clicks");
 const upgrade1CostDisplay = document.getElementById("upgrade1Cost");
 const debugText = document.getElementById("debugText");
 const clickerButton = document.getElementById("clickerButton");
 const clickCountDisplay = document.getElementById("clickCount");
 const cpsDisplay = document.getElementById("cps");
-const cpsUpgrade1Button = document.getElementById("CPSUpgrade1");
+const cpsUpgrade1Button = document.getElementById("clicker-workers");
 const upgradeCPSCostDisplay = document.getElementById("upgradeCPSCost");
 const startSongButton = document.getElementById("startSong");
 const stopSongButton = document.getElementById("stopSong");
@@ -52,15 +52,34 @@ upgrade1Button.addEventListener("click", () => {
         u1++;
         u1Cost *= 2;
         upgrade1CostDisplay.textContent = u1Cost;
+        
         clickCountDisplay.textContent = c;
     }
 });
 
-clickerButton.addEventListener("click", () => {
+clickerButton.addEventListener("mousedown", () => {
     c +=  1 + u1;
-    data.clicks = c;
     clickCountDisplay.textContent = c;
-    //this is where the click event is handled by the user
+    clickerButton.style.transform = "scale(0.8)"; 
+    clickerButton.style.transition = "transform 0.1s";
+    clickerButton.style.filter = "brightness(0.8)";
+    //this is where the mousedown click event is handled by the user
+});
+clickerButton.addEventListener("click", () => { 
+        clickCountDisplay.textContent = c;
+    clickerButton.style.transform = "scale(0.8)"; 
+    clickerButton.style.transition = "transform 0.1s";
+    clickerButton.style.filter = "brightness(0.8)";
+    setTimeout(() => { 
+        clickerButton.style.transform = "scale(1)";
+        clickerButton.style.filter = "brightness(1)";
+    }, 100);
+    //this is where the normal click event is handled by the user
+})
+clickerButton.addEventListener("mouseup", () => { 
+    clickerButton.style.transform = "scale(1)";
+    clickerButton.style.filter = "brightness(1)";
+    //this is where the mouseup click event is handled by the user
 });
 cpsUpgrade1Button.addEventListener("click", () => {
     if (c >= upgradeCPSCost) {
@@ -82,12 +101,40 @@ saveDataButton.addEventListener("click", () => {
 
 
 
-setInterval(() => {
+setInterval(() => { //ONE SEC INTERVAL
     c += cps; // automatically add clicks based on the number of upgrades owned;
     clickCountDisplay.textContent = c;
     debugText.textContent = `${JSON.stringify(data)}`;
+    data.clicks = c;
+    data.clicksPerSecond = cps;
+    data.upgrades.u1 = u1;
+    data.CPSUpgrades.autoU1 = autoU1;
 }, 1000);
 
 
+
+
+
+// TEST
+
+document.addEventListener("DOMContentLoaded", () => {
+  const menu = document.getElementById("sliding-menu");
+  const toggleBtn = document.getElementById("menu-toggle");
+  const closeBtn = document.getElementById("menu-close");
+  const overlay = document.getElementById("menu-overlay");
+
+  // Function to open/close menu
+  const toggleMenu = () => {
+    menu.classList.toggle("open");
+    overlay.classList.toggle("open");
+  };
+
+  // Event Listeners
+  toggleBtn.addEventListener("click", toggleMenu);
+  closeBtn.addEventListener("click", toggleMenu);
+  overlay.addEventListener("click", toggleMenu); // Closes menu when clicking outside
+});
+
+// TEST
 
 debugText.textContent = `${JSON.stringify(data)}`;

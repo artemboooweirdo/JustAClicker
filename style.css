@@ -28,8 +28,103 @@ button {
 }
 #clickerButton {
     cursor: pointer;
-    width: 100px; /* Adjust the size of the clicker image */
+    width: 200px; /* Adjust the size of the clicker image */
     height: auto; /* Maintains the aspect ratio of the image */
     image-rendering: pixelated; /* Ensures the image remains sharp when scaled */
     image-rendering: crisp-edges; /* Ensures the image remains sharp when scaled */
+    -webkit-user-select: none; /* Safari */
+    user-select: none;
+}
+
+
+
+
+/* TEST */
+/* Base Reset & Layout */
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+.toggle-btn {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Sliding Menu Style */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #111;
+  color: #fff;
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+  
+  /* Off-screen by default + Smooth transition */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* This class pulls the menu into view */
+.side-menu.open {
+  transform: translateX(0);
+}
+
+/* Inside Menu Styling */
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.side-menu ul {
+  list-style-type: none;
+  padding: 60px 20px;
+}
+
+.side-menu ul li a {
+  cursor: pointer;
+  display: block;
+  color: #ddd;
+  padding: 15px 10px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.side-menu ul li a:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+/* Background Dim Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+#menu-toggle {
+    position:absolute;
+    top: 30%;
+    left: 0;
 }
