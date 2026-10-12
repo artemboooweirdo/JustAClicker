@@ -56,19 +56,18 @@ upgrade1Button.addEventListener("click", () => {
         clickCountDisplay.textContent = c;
     }
 });
-
 clickerButton.addEventListener("mousedown", () => {
     c +=  1 + u1;
     clickCountDisplay.textContent = c;
     clickerButton.style.transform = "scale(0.8)"; 
-    clickerButton.style.transition = "transform 0.1s";
+    clickerButton.style.transition = "transform 0.05s";
     clickerButton.style.filter = "brightness(0.8)";
     //this is where the mousedown click event is handled by the user
 });
 clickerButton.addEventListener("click", () => { 
         clickCountDisplay.textContent = c;
     clickerButton.style.transform = "scale(0.8)"; 
-    clickerButton.style.transition = "transform 0.1s";
+    clickerButton.style.transition = "transform 0.05s";
     clickerButton.style.filter = "brightness(0.8)";
     setTimeout(() => { 
         clickerButton.style.transform = "scale(1)";

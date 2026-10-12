@@ -11,12 +11,53 @@ h1 {
     color: #FFFFFF;
 }
 
+#saveData {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+#resetButton {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+}
+#startSong {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+}
+#stopSong {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+#nullify {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  visibility: show;
+  size: 40px;
+  transform: translateX(50%);
+}
+
 button {
     padding: 10px 20px;
     font-size: 16px;
-    margin: 10px;
+    margin: 5px;
     cursor: pointer;
     border-radius: 8px; /* Rounds all four corners equally */
+}
+#clickCount {
+  position:absolute;
+  right: 0px;
+  top: 0px;
+  font-size: 100px;
+}
+#cpsContainer {
+  position:absolute;
+  right: 0px;
+  top: 80px;
+  font-size: 20px;
 }
 #clickCount, #debugText, #upgrade1Cost {
     font-weight: bold;
@@ -28,7 +69,7 @@ button {
 }
 #clickerButton {
     cursor: pointer;
-    width: 200px; /* Adjust the size of the clicker image */
+    width: 400px; /* Adjust the size of the clicker image */
     height: auto; /* Maintains the aspect ratio of the image */
     image-rendering: pixelated; /* Ensures the image remains sharp when scaled */
     image-rendering: crisp-edges; /* Ensures the image remains sharp when scaled */
