@@ -11,9 +11,11 @@ let u1Cost = 1;
 let autoU1 = 0;
 let cps = 0;
 let upgradeCPSCost = 1;
+let nullFragments = 0;
 const data = {
     clicks: c,
     clicksPerSecond: cps,
+    nullFragments: nullFragments,
     upgrades: {
         u1: u1,
         // object within an object?? coolio
@@ -35,9 +37,22 @@ const upgradeCPSCostDisplay = document.getElementById("upgradeCPSCost");
 const startSongButton = document.getElementById("startSong");
 const stopSongButton = document.getElementById("stopSong");
 const saveDataButton = document.getElementById("saveData");
+const nullifyButton = document.getElementById("nullify");
 
 
-
+function resetStats() {
+    c = 0;
+    u1 = 0;
+    u1Cost = 1;
+    autoU1 = 0;
+    cps = 0;
+    upgradeCPSCost = 1;
+    upgrade1CostDisplay.textContent = u1Cost;
+    upgradeCPSCostDisplay.textContent = upgradeCPSCost;
+    cpsDisplay.textContent = cps;
+    clickCountDisplay.textContent = c;
+    nullFragmentsDisplay.textContent = nullFragments;
+}
 
 startSongButton.addEventListener("click", () => {
     audio.play();
@@ -95,10 +110,22 @@ saveDataButton.addEventListener("click", () => {
     // localStorage is not working
     alert("Data saved!");
 });
-
-
-
-
+nullifyButton.addEventListener("click", () => {
+    if (c >= 1000) {
+        c = 0;
+        nullFragments++;
+        nullFragmentsDisplay.textContent = nullFragments;
+        u1 = 0;
+        u1Cost = 1;
+        autoU1 = 0;
+        cps = 0;
+        upgradeCPSCost = 1;
+        upgrade1CostDisplay.textContent = u1Cost;
+        upgradeCPSCostDisplay.textContent = upgradeCPSCost;
+        cpsDisplay.textContent = cps;
+        clickCountDisplay.textContent = c;
+    }
+});
 
 setInterval(() => { //ONE SEC INTERVAL
     c += cps; // automatically add clicks based on the number of upgrades owned;
@@ -108,6 +135,7 @@ setInterval(() => { //ONE SEC INTERVAL
     data.clicksPerSecond = cps;
     data.upgrades.u1 = u1;
     data.CPSUpgrades.autoU1 = autoU1;
+    data.nullFragments = nullFragments;
 }, 1000);
 
 
