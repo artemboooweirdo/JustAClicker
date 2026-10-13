@@ -5,7 +5,6 @@
 // effective barnacle...
 let c = 0;
 const audio = new Audio('Defeat.mp3');
-const array = [1,2,"john"];
 
 let u1 = 0;
 let u1Cost = 1;
@@ -15,18 +14,34 @@ let upgradeCPSCost = 1;
 let nullFragments = 0;
 let upgrade2Cost = 100;
 let upgrade2CPSCost = 100;
+const storedData = JSON.parse(localStorage.getItem("clickerData"));
+if (storedData) {
+    c = storedData.clicks || 0;
+    u1 = storedData.upgrades.u1 || 0;
+    u1Cost = storedData.upgrades.u1Cost || 1;
+    autoU1 = storedData.CPSUpgrades.autoU1 || 0;
+    upgradeCPSCost = storedData.CPSUpgrades.upgradeCPSCost || 1;
+    upgrade2CPSCost = storedData.CPSUpgrades.upgrade2CPSCost || 100;
+    cps = storedData.clicksPerSecond || 0;
+    nullFragments = storedData.nullFragments || 0;
+}
 const data = {
     clicks: c,
     clicksPerSecond: cps,
     nullFragments: nullFragments,
     upgrades: {
         u1: u1,
+        u1Cost: u1Cost
+        
         // object within an object?? coolio
     },
     CPSUpgrades: {
-        autoU1: autoU1
+        autoU1: autoU1,
+        upgradeCPSCost: upgradeCPSCost,
+        upgrade2CPSCost: upgrade2CPSCost
     }
 }
+
 
 // DOM element references for buttons and displays
 const upgrade1Button = document.getElementById("bigger-clicks");
@@ -45,7 +60,7 @@ const upgrade2Button = document.getElementById("badder-clicks");
 const upgrade2CostDisplay = document.getElementById("upgrade2Cost");
 const upgrade2CPSButton = document.getElementById("autoclicker");
 const upgrade2CPSCostDisplay = document.getElementById("upgrade2CPSCost");
-const nullFragmentsDisplay = document.getElementById("nullFragments");
+const nullFragmentsDisplay = document.getElementById("nullFragmentsDisplay");
 
 
 function resetStats() {
@@ -81,16 +96,16 @@ upgrade1Button.addEventListener("click", () => {
 clickerButton.addEventListener("mousedown", () => {
     c +=  1 + u1;
     clickCountDisplay.textContent = Math.floor(c);
-    clickerButton.style.transform = "scale(0.8)"; 
-    clickerButton.style.transition = "transform 0.05s";
-    clickerButton.style.filter = "brightness(0.8)";
+    clickerButton.style.transform = "scale(0.7)"; 
+    clickerButton.style.transition = "transform 0.1s";
+    clickerButton.style.filter = "opacity(0.4)";
     //this is where the mousedown click event is handled by the user
 });
 clickerButton.addEventListener("click", () => { 
     clickCountDisplay.textContent = Math.floor(c);
-    clickerButton.style.transform = "scale(0.8)"; 
-    clickerButton.style.transition = "transform 0.05s";
-    clickerButton.style.filter = "brightness(0.8)";
+    clickerButton.style.transform = "scale(0.7)"; 
+    clickerButton.style.transition = "transform 0.1s";
+    clickerButton.style.filter = "opacity(0.4)";
     setTimeout(() => { 
         clickerButton.style.transform = "scale(1)";
         clickerButton.style.filter = "brightness(1)";
@@ -156,7 +171,6 @@ setInterval(() => { //ONE SEC INTERVAL
     data.upgrades.u1 = u1;
     data.CPSUpgrades.autoU1 = autoU1;
     data.nullFragments = nullFragments;
-    debugText.textContent = `${JSON.stringify(data)}`;
 }, 1000);
 
 
@@ -184,5 +198,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // TEST
-
-debugText.textContent = `${JSON.stringify(data)}`;
