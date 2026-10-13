@@ -61,6 +61,7 @@ const upgrade2CostDisplay = document.getElementById("upgrade2Cost");
 const upgrade2CPSButton = document.getElementById("autoclicker");
 const upgrade2CPSCostDisplay = document.getElementById("upgrade2CPSCost");
 const nullFragmentsDisplay = document.getElementById("nullFragmentsDisplay");
+const nullTreeButton = document.getElementById("nulltree");
 
 
 function resetStats() {
@@ -135,7 +136,7 @@ saveDataButton.addEventListener("click", () => {
 nullifyButton.addEventListener("click", () => {
     if (c >= 1000) {
         c = 0;
-        nullFragments++;
+        nullFragments += Math.floor(c / 1000);
         nullFragmentsDisplay.textContent = nullFragments;
         resetStats();
         upgrade1CostDisplay.textContent = u1Cost;
@@ -171,7 +172,12 @@ setInterval(() => { //ONE SEC INTERVAL
     data.upgrades.u1 = u1;
     data.CPSUpgrades.autoU1 = autoU1;
     data.nullFragments = nullFragments;
+    nullFragmentsDisplay.textContent = nullFragments;
 }, 1000);
+nullTreeButton.addEventListener("click", () => {
+    localStorage.setItem("clickerData", JSON.stringify(data));
+    window.location.href = "nulltree.html";
+});
 
 
 
