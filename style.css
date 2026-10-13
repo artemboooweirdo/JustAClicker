@@ -35,10 +35,12 @@ h1 {
   position: absolute;
   bottom: 0;
   right: 50%;
-  visibility: show;
-  size: 40px;
+  visibility: visible;
+  height: 60px;
+  width: auto;
+  font-size: 40px;
   transform: translateX(50%);
-  
+  font-family: 'Courier New', Courier, monospace;
 }
 
 button {
@@ -91,6 +93,7 @@ button {
 body {
   font-family: sans-serif;
   margin: 0;
+  touch-action:manipulation;
 }
 
 .toggle-btn {
@@ -112,7 +115,7 @@ body {
   
   /* Off-screen by default + Smooth transition */
   transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 }
 
 /* This class pulls the menu into view */
@@ -145,6 +148,7 @@ body {
   text-decoration: none;
   font-size: 18px;
   transition: 0.2s;
+  font-family: monospace;
 }
 
 .side-menu ul li a:hover {

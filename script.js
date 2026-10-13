@@ -2,6 +2,7 @@
 // just some coding with much vibe
 // console.log cannot be used because of school admin
 // DevTools are banned
+// effective barnacle...
 let c = 0;
 const audio = new Audio('Defeat.mp3');
 const array = [1,2,"john"];
@@ -12,6 +13,8 @@ let autoU1 = 0;
 let cps = 0;
 let upgradeCPSCost = 1;
 let nullFragments = 0;
+let upgrade2Cost = 100;
+let upgrade2CPSCost = 100;
 const data = {
     clicks: c,
     clicksPerSecond: cps,
@@ -33,11 +36,16 @@ const clickerButton = document.getElementById("clickerButton");
 const clickCountDisplay = document.getElementById("clickCount");
 const cpsDisplay = document.getElementById("cps");
 const cpsUpgrade1Button = document.getElementById("clicker-workers");
-const upgradeCPSCostDisplay = document.getElementById("upgradeCPSCost");
+const upgradeCPSCostDisplay = document.getElementById("upgrade1CPSCost");
 const startSongButton = document.getElementById("startSong");
 const stopSongButton = document.getElementById("stopSong");
 const saveDataButton = document.getElementById("saveData");
 const nullifyButton = document.getElementById("nullify");
+const upgrade2Button = document.getElementById("badder-clicks");
+const upgrade2CostDisplay = document.getElementById("upgrade2Cost");
+const upgrade2CPSButton = document.getElementById("autoclicker");
+const upgrade2CPSCostDisplay = document.getElementById("upgrade2CPSCost");
+const nullFragmentsDisplay = document.getElementById("nullFragments");
 
 
 function resetStats() {
@@ -65,22 +73,21 @@ upgrade1Button.addEventListener("click", () => {
     if (c >= u1Cost) {
         c -= u1Cost;
         u1++;
-        u1Cost *= 2;
-        upgrade1CostDisplay.textContent = u1Cost;
-        
-        clickCountDisplay.textContent = c;
+        u1Cost *= 1.3;
+        upgrade1CostDisplay.textContent = Math.floor(u1Cost);
+        clickCountDisplay.textContent = Math.floor(c);
     }
 });
 clickerButton.addEventListener("mousedown", () => {
     c +=  1 + u1;
-    clickCountDisplay.textContent = c;
+    clickCountDisplay.textContent = Math.floor(c);
     clickerButton.style.transform = "scale(0.8)"; 
     clickerButton.style.transition = "transform 0.05s";
     clickerButton.style.filter = "brightness(0.8)";
     //this is where the mousedown click event is handled by the user
 });
 clickerButton.addEventListener("click", () => { 
-        clickCountDisplay.textContent = c;
+    clickCountDisplay.textContent = Math.floor(c);
     clickerButton.style.transform = "scale(0.8)"; 
     clickerButton.style.transition = "transform 0.05s";
     clickerButton.style.filter = "brightness(0.8)";
@@ -99,9 +106,9 @@ cpsUpgrade1Button.addEventListener("click", () => {
     if (c >= upgradeCPSCost) {
         c -= upgradeCPSCost;
         cps++;
-        upgradeCPSCost *= 2;
-        upgradeCPSCostDisplay.textContent = upgradeCPSCost;
-        clickCountDisplay.textContent = c;
+        upgradeCPSCost *= 1.3;
+        upgradeCPSCostDisplay.textContent = Math.floor(upgradeCPSCost);
+        clickCountDisplay.textContent = Math.floor(c);
         cpsDisplay.textContent = cps;
     }
 });
@@ -115,27 +122,41 @@ nullifyButton.addEventListener("click", () => {
         c = 0;
         nullFragments++;
         nullFragmentsDisplay.textContent = nullFragments;
-        u1 = 0;
-        u1Cost = 1;
-        autoU1 = 0;
-        cps = 0;
-        upgradeCPSCost = 1;
+        resetStats();
         upgrade1CostDisplay.textContent = u1Cost;
         upgradeCPSCostDisplay.textContent = upgradeCPSCost;
         cpsDisplay.textContent = cps;
         clickCountDisplay.textContent = c;
     }
 });
+upgrade2Button.addEventListener("click", () => {
+    if (c >= upgrade2Cost) {
+        c -= upgrade2Cost;
+        u1 += 10;
+        upgrade2Cost *= 2;
+        upgrade2CostDisplay.textContent = upgrade2Cost;
+        clickCountDisplay.textContent = Math.floor(c);
+    }
 
+});
+upgrade2CPSButton.addEventListener("click", () => {
+    if (c >= upgrade2CPSCost) {
+        c -= upgrade2CPSCost;
+        autoU1 += 10;
+        upgrade2CPSCost *= 2;
+        upgrade2CPSCostDisplay.textContent = upgrade2CPSCost;
+        clickCountDisplay.textContent = Math.floor(c);
+    }
+});
 setInterval(() => { //ONE SEC INTERVAL
     c += cps; // automatically add clicks based on the number of upgrades owned;
-    clickCountDisplay.textContent = c;
-    debugText.textContent = `${JSON.stringify(data)}`;
+    clickCountDisplay.textContent = Math.floor(c);
     data.clicks = c;
     data.clicksPerSecond = cps;
     data.upgrades.u1 = u1;
     data.CPSUpgrades.autoU1 = autoU1;
     data.nullFragments = nullFragments;
+    debugText.textContent = `${JSON.stringify(data)}`;
 }, 1000);
 
 
