@@ -1,4 +1,6 @@
 /* This is the style file for the Clicker Layout */
+
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,22 +9,33 @@ body {
     background-color: #256a55;
 }
 
+/* Title Style */
 h1 {
     color: #FFFFFF;
 }
 
+/* nulltree button */
 
-
+#nulltree {
+  position: absolute;
+  bottom: 60px;
+  right: 50%;
+  transform: translateX(50%);
+}
+/* Save data button */
 #saveData {
   position: absolute;
   bottom: 0;
   right: 0;
 }
+/* reset button */
 #resetButton {
   position: absolute;
   bottom: 40px;
   right: 0;
 }
+
+/* start and stop song buttons */
 #startSong {
   position: absolute;
   bottom: 40px;
@@ -33,6 +46,8 @@ h1 {
   bottom: 0;
   left: 0;
 }
+
+/* reset layer button (nullify) */
 #nullify {
   position: absolute;
   bottom: 0;
@@ -45,6 +60,7 @@ h1 {
   font-family: 'Courier New', Courier, monospace;
 }
 
+/* general button style */
 button {
     padding: 10px 20px;
     font-size: 16px;
@@ -52,26 +68,32 @@ button {
     cursor: pointer;
     border-radius: 8px; /* Rounds all four corners equally */
 }
+/* click counter */
 #clickCount {
   position:absolute;
   right: 0px;
   top: 0px;
   font-size: 100px;
 }
+/* cps label */
 #cpsContainer {
   position:absolute;
   right: 0px;
   top: 80px;
   font-size: 20px;
 }
+
+/* idk what this is for */
 #clickCount, #debugText, #upgrade1Cost {
     font-weight: bold;
 }
+/* debug text */
 #debugText {
     position: absolute;
     top: 0;
     left: 0;
 }
+/* actual click button */
 #clickerButton {
     cursor: pointer;
     width: 400px; /* Adjust the size of the clicker image */
@@ -81,7 +103,7 @@ button {
     -webkit-user-select: none; /* Safari */
     user-select: none;
 }
-
+/* null fragments */
 #nullFragments {
     position: absolute;
     top: 100px;

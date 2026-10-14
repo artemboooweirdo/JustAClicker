@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Clicker Layout</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/styles/style.css">
     
   </head>
 
   <body>
     <!-- Content goes here like a good boy -->
      <h1>Just a Normal Clicker</h1>
-     <p>Click the button below to start clicking!</p>
-     <Image id="clickerButton" src="clicker.png" alt="Click Me!">
+     <p>Click the button!</p>
+     <img id="clickerButton" src="assets/images/clicker.png" alt="Click Me!">
      <span id="clickCount">0</span>
      <p id="cpsContainer">CPS: <span id="cps">0</span></p>
      <button id="resetButton">Reset</button>
@@ -49,8 +49,11 @@
   <footer>
 
   </footer>
-  <script src="script.js">
+  <script src="scripts/script.js">
+    
     // This is the scripty yay
     
   </script>
+  <script src="https://unpkg.com/eruda"></script>
+<script>eruda.init();</script>
 </html>

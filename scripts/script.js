@@ -4,8 +4,9 @@
 // DevTools are banned
 // effective barnacle...
 let c = 0;
-const audio = new Audio('Defeat.mp3');
-
+const audio = new Audio('assets/audio/Defeat.mp3');
+const clickSound = new Audio('assets/audio/click.mp3');
+console.log("Audio file loaded successfully.");
 let u1 = 0;
 let u1Cost = 1;
 let autoU1 = 0;
@@ -102,7 +103,7 @@ clickerButton.addEventListener("mousedown", () => {
     clickerButton.style.filter = "opacity(0.4)";
     //this is where the mousedown click event is handled by the user
 });
-clickerButton.addEventListener("click", () => { 
+clickerButton.addEventListener("click", () => {
     clickCountDisplay.textContent = Math.floor(c);
     clickerButton.style.transform = "scale(0.7)"; 
     clickerButton.style.transition = "transform 0.1s";
@@ -111,6 +112,9 @@ clickerButton.addEventListener("click", () => {
         clickerButton.style.transform = "scale(1)";
         clickerButton.style.filter = "brightness(1)";
     }, 100);
+    clickSound.pause();
+    clickSound.currentTime = 0;
+    clickSound.play();
     //this is where the normal click event is handled by the user
 })
 clickerButton.addEventListener("mouseup", () => { 
@@ -176,7 +180,20 @@ setInterval(() => { //ONE SEC INTERVAL
 }, 1000);
 nullTreeButton.addEventListener("click", () => {
     localStorage.setItem("clickerData", JSON.stringify(data));
-    window.location.href = "nulltree.html";
+    window.location.href = "pages/nulltree.html";
+});
+resetButton.addEventListener("click", () => {
+    if (confirm("Are you sure you want to reset your progress? This cannot be undone.")) {
+        localStorage.removeItem("clickerData");
+        resetStats();
+        nullFragments = 0;
+        localStorage.setItem("clickerData", JSON.stringify(data));
+        upgrade1CostDisplay.textContent = u1Cost;
+        upgradeCPSCostDisplay.textContent = upgradeCPSCost;
+        cpsDisplay.textContent = cps;
+        clickCountDisplay.textContent = c;
+        nullFragmentsDisplay.textContent = nullFragments;
+    }
 });
 
 
