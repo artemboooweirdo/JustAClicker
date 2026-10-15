@@ -62,13 +62,24 @@ body {
     grid-row: 5 / 6;
     grid-column: 5 / 6;
 }
-
+.null8 {
+    grid-row: 5 / 6;
+    grid-column: 3 / 4;
+}
+.null9 {
+    grid-row: 5 / 6;
+    grid-column: 1 / 2;
+}
+.null10 {
+    grid-row: 7 / 8;
+    grid-column: 1 / 2;
+}
 /* Null upgrade style */
 
 .item {
   padding: 0.5em;
   background-color: #fb7185;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--clr-light);
   border: 10px solid var(--clr-accent);
 }
@@ -85,7 +96,7 @@ body {
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 2px;
+    width: clamp(2px, 0.4rem, 6px);
     background-color: var(--clr-dark);
     transform: translateX(-50%);
 }
@@ -98,7 +109,7 @@ body {
     top: 50%;
     left: 0;
     right: 0;
-    height: 2px;
+    height: clamp(2px, 0.4rem, 6px);
     background-color: var(--clr-dark);
     transform: translateY(-50%);
 }
@@ -129,7 +140,19 @@ body {
     grid-row: 4 / 5;
     grid-column: 5 / 6;
 }
-/* Null fragments display */
+.connector7 {
+    grid-row: 5 / 6;
+    grid-column: 4 / 5;
+}
+.connector8 {
+    grid-row: 5 / 6;
+    grid-column: 2 / 3;
+}
+.connector9 {
+    grid-row: 6 / 7;
+    grid-column: 1 / 2;
+}
+/* Misc styles */
 #nullFragments {
     margin: 0;
     position: fixed;
@@ -137,4 +160,17 @@ body {
     right: 0;
     font-size: 3rem;
     color: var(--clr-accent);
+}
+#backButton {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--clr-dark);
+    background-color: var(--clr-light);
+    color: var(--clr-dark);
+    border-radius: 5px;
+    cursor: pointer;
 }
