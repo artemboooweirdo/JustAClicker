@@ -139,9 +139,11 @@ saveDataButton.addEventListener("click", () => {
 });
 nullifyButton.addEventListener("click", () => {
     if (c >= 1000) {
-        c = 0;
         nullFragments += Math.floor(c / 1000);
         nullFragmentsDisplay.textContent = nullFragments;
+        data.nullFragments = nullFragments;
+        localStorage.setItem("clickerData", JSON.stringify(data));
+        alert("You have nullified your progress and gained " + Math.floor(c / 1000) + " null fragments!");
         resetStats();
         upgrade1CostDisplay.textContent = u1Cost;
         upgradeCPSCostDisplay.textContent = upgradeCPSCost;
