@@ -12,6 +12,7 @@ body {
   --clr-dark: #0f172a;
   --clr-light: #f1f5f9;
   --clr-accent: #e11d48;
+  --clr-green: #256a55;
 }
 
 /* upgrade tree container */
@@ -80,6 +81,7 @@ body {
   padding: 0.5em;
   background-color: #fb7185;
   font-weight: 800;
+  cursor: pointer;
   color: var(--clr-light);
   border: 10px solid var(--clr-accent);
 }
@@ -159,7 +161,7 @@ body {
     top: 0;
     right: 0;
     font-size: 3rem;
-    color: var(--clr-accent);
+    color: var(--clr-green);
 }
 #backButton {
     position: fixed;

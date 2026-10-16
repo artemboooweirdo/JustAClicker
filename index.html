@@ -10,20 +10,25 @@
 
   <body>
     <!-- Content goes here like a good boy -->
-     <h1>Just a Normal Clicker</h1>
-     <p>Click the button!</p>
-     <img id="clickerButton" src="assets/images/clicker.png" alt="Click Me!">
-     <span id="clickCount">0</span>
-     <p id="cpsContainer">CPS: <span id="cps">0</span></p>
-     <button id="resetButton">Reset</button>
-     <button id="saveData">Save Data</button>
-     <span id="debugText"></span>
+     <div class="container">
       <button id="startSong">Start the song</button>
       <button id="stopSong">Stop the song</button>
-      <button id="nullify">ℵullify</button>
-      <p id="nullFragments">ℵ: <span id="nullFragmentsDisplay">0</span></p>
+      <h1>Just a Normal Clicker</h1>
+      <p>Click the button!</p>
+      <img id="clickerButton" src="assets/images/clicker.png" alt="Click Me!">
+      <button id="resetButton">Reset</button>
+      <button id="saveData">Save Data</button>
       <button id="nulltree">Null Tree</button>
-     <!-- Debug information -->
+      <button id="nullify">ℵullify</button>
+      <!-- stuff here later -->
+     </div>
+     
+
+     <span id="clickDisplay">0</span>
+     <p id="clicksPerSecondDisplay">CPS: <span id="clicksPerSecond">0</span></p>
+     <span id="debugText"></span>
+      <p id="nullFragmentsDisplay">ℵ: <span id="nullFragments">0</span></p>
+
 
 
 
@@ -36,24 +41,27 @@
       <nav id="sliding-menu" class="side-menu">
       <button id="menu-close" class="close-btn">×</button>
       <ul>
-        <li><a id="bigger-clicks">Bigger Clicks Costs <span id="upgrade1Cost">1</span></a></li>
-        <li><a id="badder-clicks">Badder Clicks Cost <span id="upgrade2Cost">100</span></a></li>
-        <li><a id="clicker-workers">Clicker Workers Cost <span id="upgrade1CPSCost">1</span></a></li>
-        <li><a id="autoclicker">Autoclicker Costs <span id="upgrade2CPSCost">100</span></a></li>
+        <li><a id="upgrade1Display">+1 cps <span id="upgrade1Cost">1</span></a></li>
+        <li><a id="upgrade2Display">+5 cps <span id="upgrade2Cost">50</span></a></li>
+        <li><a id="upgrade3Display">+20 cps <span id="upgrade3Cost">300</span></a></li>
+        <li><a id="upgrade4Display">+100 cps <span id="upgrade4Cost">2000</span></a></li>
       </ul>
     </nav>
 
     <!-- Background Overlay -->
     <div id="menu-overlay" class="overlay"></div>
-  </body>
-  <footer>
+  </body> <!-- End of Body -->
 
+  <footer>
+<!-- idk what to put here -->
   </footer>
+
   <script src="scripts/script.js">
-    
     // This is the scripty yay
-    
   </script>
+
+  <!-- Console Scripts -->
   <script src="https://unpkg.com/eruda"></script>
-<script>eruda.init();</script>
+  <script>eruda.init();</script>
+
 </html>

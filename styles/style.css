@@ -14,88 +14,85 @@ h1 {
     color: #FFFFFF;
 }
 
-/* nulltree button */
+/* Grid Container */
 
-#nulltree {
-  position: absolute;
-  bottom: 60px;
-  right: 50%;
-  transform: translateX(50%);
-}
-/* Save data button */
-#saveData {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-/* reset button */
-#resetButton {
-  position: absolute;
-  bottom: 40px;
-  right: 0;
+.container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+    grid-template-rows: repeat(20, minmax(0, 1fr));
 }
 
-/* start and stop song buttons */
-#startSong {
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-}
-#stopSong {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
 
-/* reset layer button (nullify) */
-#nullify {
-  position: absolute;
-  bottom: 0;
-  right: 50%;
-  visibility: visible;
-  height: 60px;
-  width: auto;
-  font-size: 40px;
-  transform: translateX(50%);
-  font-family: 'Courier New', Courier, monospace;
-}
-
-/* general button style */
+/* BUTTONS */
 button {
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     font-size: 16px;
-    margin: 5px;
     cursor: pointer;
     border-radius: 8px; /* Rounds all four corners equally */
 }
+/* BUTTONS */
+
+
+
+#saveData {
+  grid-row: -2 / -1;
+  grid-column: -2 / -1;
+}
+
+#resetButton {
+  grid-row: -3 / -2;
+  grid-column: -2 / -1;
+}
+
+#startSong {
+  grid-row: -2 / -1;
+  grid-column: 1 / 2;
+
+}
+
+#stopSong {
+  grid-row: -3 / -2;
+  grid-column: 1 / 2;
+}
+
+#nullify {
+  grid-row: -2 / -1;
+  grid-column: 9 / 12;
+  visibility: visible;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 10px;
+}
+
+#nulltree {
+  grid-row: -3 / -2;
+  grid-column: 10 / 11;
+
+}
+
+/* END BUTTONS */
+
 /* click counter */
-#clickCount {
-  position:absolute;
+#clickDisplay {
+  position:fixed;
   right: 0px;
   top: 0px;
   font-size: 100px;
 }
 /* cps label */
-#cpsContainer {
-  position:absolute;
+#clicksPerSecondDisplay {
+  position:fixed;
   right: 0px;
   top: 80px;
   font-size: 20px;
 }
 
 /* idk what this is for */
-#clickCount, #debugText, #upgrade1Cost {
-    font-weight: bold;
-}
-/* debug text */
-#debugText {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
 /* actual click button */
 #clickerButton {
     cursor: pointer;
+    -webkit-user-drag: none; /* Prevents the image from being dragged */
     width: 400px; /* Adjust the size of the clicker image */
     height: auto; /* Maintains the aspect ratio of the image */
     image-rendering: pixelated; /* Ensures the image remains sharp when scaled */
@@ -104,15 +101,32 @@ button {
     user-select: none;
 }
 /* null fragments */
-#nullFragments {
-    position: absolute;
+#nullFragmentsDisplay {
+    position: fixed;
     top: 100px;
     right: 0;
     font-size: 20px;
 }
 
 
+
+
+
 /* TEST */
+
+#upgrade1Cost, #upgrade2Cost, #upgrade3Cost, #upgrade4Cost {
+  position: absolute;
+  transform: translate(10px,20px);
+  cursor: pointer;
+  color: var(--clr-light);
+  border: 10px solid var(--clr-accent);
+}
+
+
+
+
+
+
 /* Base Reset & Layout */
 body {
   font-family: sans-serif;
@@ -173,6 +187,7 @@ body {
   font-size: 18px;
   transition: 0.2s;
   font-family: monospace;
+  align-items: left;
 }
 
 .side-menu ul li a:hover {
