@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Clicker Layout</title>
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css">
     
   </head>
 
@@ -13,8 +13,8 @@
      <div class="container">
       <button id="startSong">Start the song</button>
       <button id="stopSong">Stop the song</button>
-      <h1>Just a Normal Clicker</h1>
-      <p>Click the button!</p>
+      <h1 id="gameTitle">Just a Normal Clicker</h1>
+      <p id="gameTitleDesc">Click the button!</p>
       <img id="clickerButton" src="assets/images/clicker.png" alt="Click Me!">
       <button id="resetButton">Reset</button>
       <button id="saveData">Save Data</button>
@@ -28,6 +28,8 @@
      <p id="clicksPerSecondDisplay">CPS: <span id="clicksPerSecond">0</span></p>
      <span id="debugText"></span>
       <p id="nullFragmentsDisplay">ℵ: <span id="nullFragments">0</span></p>
+      
+      <span id="alert" class="alert">Data Saved!</span>
 
 
 
