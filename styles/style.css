@@ -2,40 +2,38 @@
 
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background-color: #256a55;
-    height: 100%;
-    overflow: hidden;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #256a55;
+  height: 100%;
+  overflow: hidden;
 }
 
 /* Title Style */
 h1 {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 
 /* Grid Container */
 
 .container {
-    display: grid;
-    width: 100vw;
-    height: 100vh;
-    grid-template-columns: repeat(20, minmax(0, 1fr));
-    grid-template-rows: repeat(20, minmax(0, 1fr));
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+  grid-template-rows: repeat(20, minmax(0, 1fr));
 }
-
 
 /* BUTTONS */
 button {
-    /* padding: 10px 20px; */
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 8px; /* Rounds all four corners equally */
+  /* padding: 10px 20px; */
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px; /* Rounds all four corners equally */
 }
 /* BUTTONS */
-
 
 #gameTitle {
   grid-area: 1 / 8 / 2 / 14;
@@ -54,7 +52,6 @@ button {
 
 #startSong {
   grid-area: -2 / 1 / -1 / 2;
-
 }
 
 #stopSong {
@@ -64,27 +61,26 @@ button {
 #nullify {
   grid-area: -2 / 9 / -1 / 12;
   visibility: visible;
-  font-family: 'Space Mono', monospace;
+  font-family: "Space Mono", monospace;
   letter-spacing: 10px;
 }
 
 #nulltree {
   grid-area: -3 / 10 / -2 / 11;
-
 }
 
 /* END BUTTONS */
 
 /* click counter */
 #clickDisplay {
-  position:fixed;
+  position: fixed;
   right: 0px;
   top: 0px;
   font-size: 100px;
 }
 /* cps label */
 #clicksPerSecondDisplay {
-  position:fixed;
+  position: fixed;
   right: 0px;
   top: 80px;
   font-size: 20px;
@@ -93,22 +89,22 @@ button {
 /* idk what this is for */
 /* actual click button */
 #clickerButton {
-    cursor: pointer;
-    -webkit-user-drag: none; /* Prevents the image from being dragged */
-    width: 450px; /* Adjust the size of the clicker image */
-    height: auto; /* Maintains the aspect ratio of the image */
-    image-rendering: pixelated; /* Ensures the image remains sharp when scaled */
-    image-rendering: crisp-edges; /* Ensures the image remains sharp when scaled */
-    -webkit-user-select: none; /* Safari */
-    user-select: none;
-    grid-area: 5 / 8 / 8 / 16 ;
+  cursor: pointer;
+  -webkit-user-drag: none; /* Prevents the image from being dragged */
+  width: 450px; /* Adjust the size of the clicker image */
+  height: auto; /* Maintains the aspect ratio of the image */
+  image-rendering: pixelated; /* Ensures the image remains sharp when scaled */
+  image-rendering: crisp-edges; /* Ensures the image remains sharp when scaled */
+  -webkit-user-select: none; /* Safari */
+  user-select: none;
+  grid-area: 5 / 8 / 8 / 16;
 }
 /* null fragments */
 #nullFragmentsDisplay {
-    position: fixed;
-    top: 100px;
-    right: 0;
-    font-size: 20px;
+  position: fixed;
+  top: 100px;
+  right: 0;
+  font-size: 20px;
 }
 
 .alert {
@@ -123,88 +119,76 @@ button {
   visibility: visible;
 }
 
+/* TEST */
 
 /* TEST */
 
-#upgrade1Cost, #upgrade2Cost, #upgrade3Cost, #upgrade4Cost {
-  position: absolute;
-  transform: translate(10px,20px);
-  cursor: pointer;
-  color: var(--clr-light);
-  border: 10px solid var(--clr-accent);
-}
-
-
-
-
-
-
 /* Base Reset & Layout */
-body {
-  font-family: sans-serif;
-  margin: 0;
-  touch-action:manipulation;
-}
-
-.toggle-btn {
-  font-size: 20px;
-  cursor: pointer;
-}
 
 /* Sliding Menu Style */
-.side-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 300px;
-  height: 100%;
-  /* Off-screen by default + Smooth transition */
+.upgradeMenu {
+  grid-area: 1 / 1 / -1 / 5;
 }
-
-/* This class pulls the menu into view */
 
 /* Inside Menu Styling */
-.close-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 30px;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  cursor: pointer;
-}
 
-.side-menu ul {
+.upgradeMenu ul {
   list-style-type: none;
-  padding: 60px 20px;
+  position: flex;
+  padding-inline-start: 0;
+  border: 1 dotted black;
 }
 
-.side-menu ul li a {
-  cursor: pointer;
-  display: block;
+.upgradeMenu ul li {
+  border: 12px double #000000;
+  background-color: #144838;
   color: #ddd;
-  padding: 15px 10px;
-  text-decoration: none;
-  font-size: 18px;
-  transition: 0.2s;
-  font-family: monospace;
-  align-items: left;
+  margin: 7px;
+  padding: 0;
 }
 
-.side-menu ul li a:hover {
+.upgradeMenu ul li .upgradePurchase {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font-size: 18px;
+  font-family: monospace;
+  cursor: pointer;
+}
+
+.upgradeMenu ul li .upgradePurchase:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: -5px;
+}
+
+.upgradeMenu ul li .upgradePurchase span:last-child {
+  text-align: right;
+}
+
+.upgradeMenu ul li .upgradePurchase:hover {
   background-color: #222;
   color: #fff;
 }
 
-/* Background Dim Overlay */
+.upgradeMenu ul li:hover {
+  background-color: #222;
+  color: #fff;
+}
 
-.overlay.open {
-  opacity: 1;
-  visibility: visible;
+#upgrade1Cost,
+#upgrade2Cost,
+#upgrade3Cost,
+#upgrade4Cost {
+  color: var(--clr-light);
 }
-#menu-toggle {
-    position:absolute;
-    top: 30%;
-    left: 0;
-}
+
+/* Background Dim Overlay */

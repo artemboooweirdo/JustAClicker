@@ -1,42 +1,60 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Null Tree</title>
-    <link rel="stylesheet" href="../styles/nulltree.css">
-    
+    <link rel="stylesheet" href="../styles/nulltree.css" />
   </head>
 
   <body>
-      <p id="nullFragments">ℵ: <span id="nullFragmentsDisplay">0</span></p>
-      <button id="backButton" onclick="window.location.href='../index.html'">Back</button>
-        <div class="container">
-          <!-- Null Upgrades -->
-          <div class="item null1">1</div>
-          <div class="item null2">2</div>
-          <div class="item null3">3</div>
-          <div class="item null4">4</div>
-          <div class="item null5">5</div>
-          <div class="item null6">6</div>
-          <div class="item null7">7</div>
-          <div class="item null8">8</div>
-          <div class="item null9">9</div>
-          <div class="item null10">10</div>
+    <p id="nullFragments">ℵ: <span id="nullFragmentsDisplay">0</span></p>
+    <button id="backButton" onclick="window.location.href = '../index.html'">
+      Back
+    </button>
+    <div class="container">
+      <!-- Null Upgrades -->
+      <button class="item" id="null1" type="button">
+        <span class="upgrade-name">First Spark</span>
+        <span class="upgrade-cost">Cost: <span data-cost></span> ℵ</span>
+        <span class="upgrade-bonus">Bonus: <span data-bonus></span></span>
+      </button>
+      <button class="item hidden" id="null2" type="button" inert>
+        <span class="upgrade-name">Passive Echo</span>
+        <span class="upgrade-cost">Cost: <span data-cost></span> ℵ</span>
+        <span class="upgrade-bonus">Bonus: <span data-bonus></span></span>
+      </button>
+      <button class="item hidden" id="null3" type="button" inert>
+        <span class="upgrade-name">Null Yield</span>
+        <span class="upgrade-cost">Cost: <span data-cost></span> ℵ</span>
+        <span class="upgrade-bonus">Bonus: <span data-bonus></span></span>
+      </button>
+      <button class="item hidden" id="null4" type="button" inert>
+        <span class="upgrade-name">Click Surge</span>
+        <span class="upgrade-cost">Cost: <span data-cost></span> ℵ</span>
+        <span class="upgrade-bonus">Bonus: <span data-bonus></span></span>
+      </button>
+      <button class="item hidden" id="null5" type="button" inert>
+        <span class="upgrade-name">Idle Engine</span>
+        <span class="upgrade-cost">Cost: <span data-cost></span> ℵ</span>
+        <span class="upgrade-bonus">Bonus: <span data-bonus></span></span>
+      </button>
+      <button class="item hidden" id="null6" type="button" inert>
+        <span class="upgrade-name">Fragment Core</span>
+        <span class="upgrade-cost">Cost: <span data-cost></span> ℵ</span>
+        <span class="upgrade-bonus">Bonus: <span data-bonus></span></span>
+      </button>
 
-          <!-- Connector lines -->
-          <div class="verticalConnector connector1"></div>
-          <div class="horizontalConnector connector2"></div>
-          <div class="verticalConnector connector3"></div>
-          <div class="horizontalConnector connector4"></div>
-          <div class="verticalConnector connector5"></div>
-          <div class="verticalConnector connector6"></div>
-          <div class="horizontalConnector connector7"></div>
-          <div class="horizontalConnector connector8"></div>
-          <div class="verticalConnector connector9"></div>
-        </div>
-
+      <!-- Connector lines -->
+      <div class="verticalConnector connector1 fromUpgrade1 hidden"></div>
+      <div class="horizontalConnector connector2 fromUpgrade2 hidden"></div>
+      <div class="verticalConnector connector3 fromUpgrade3 hidden"></div>
+      <div class="horizontalConnector connector4 fromUpgrade3 hidden"></div>
+      <div class="verticalConnector connector5 fromUpgrade3 hidden"></div>
+    </div>
   </body>
 
   <script src="../scripts/nulltree.js">
@@ -45,6 +63,7 @@
 
   <!-- for devtools -->
   <script src="https://unpkg.com/eruda"></script>
-  <script>eruda.init();</script>
-
+  <script>
+    eruda.init();
+  </script>
 </html>

@@ -1,61 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Clicker Layout</title>
-    <link rel="stylesheet" href="./styles/style.css">
-    
+    <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
   <body>
     <!-- Content goes here like a good boy -->
-     <div class="container">
+    <div class="container">
       <button id="startSong">Start the song</button>
       <button id="stopSong">Stop the song</button>
       <h1 id="gameTitle">Just a Normal Clicker</h1>
       <p id="gameTitleDesc">Click the button!</p>
-      <img id="clickerButton" src="assets/images/clicker.png" alt="Click Me!">
+      <img id="clickerButton" src="assets/images/clicker.png" alt="Click Me!" />
       <button id="resetButton">Reset</button>
       <button id="saveData">Save Data</button>
       <button id="nulltree">Null Tree</button>
       <button id="nullify">ℵullify</button>
       <!-- stuff here later -->
-     </div>
-     
+      <nav class="upgradeMenu">
+        <ul>
+          <li>
+            <button id="upgrade1Display" class="upgradePurchase" type="button">
+              <span>+1 cps</span>
+              <span id="upgrade1Cost">1</span>
+            </button>
+          </li>
+          <li>
+            <button id="upgrade2Display" class="upgradePurchase" type="button">
+              <span>+5 cps</span>
+              <span id="upgrade2Cost">50</span>
+            </button>
+          </li>
+          <li>
+            <button id="upgrade3Display" class="upgradePurchase" type="button">
+              <span>+20 cps</span>
+              <span id="upgrade3Cost">300</span>
+            </button>
+          </li>
+          <li>
+            <button id="upgrade4Display" class="upgradePurchase" type="button">
+              <span>+100 cps</span>
+              <span id="upgrade4Cost">2000</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
 
-     <span id="clickDisplay">0</span>
-     <p id="clicksPerSecondDisplay">CPS: <span id="clicksPerSecond">0</span></p>
-     <span id="debugText"></span>
-      <p id="nullFragmentsDisplay">ℵ: <span id="nullFragments">0</span></p>
-      
-      <span id="alert" class="alert">Data Saved!</span>
+    <span id="clickDisplay">0</span>
+    <p id="clicksPerSecondDisplay">CPS: <span id="clicksPerSecond">0</span></p>
+    <span id="debugText"></span>
+    <p id="nullFragmentsDisplay">ℵ: <span id="nullFragments">0</span></p>
 
+    <span id="alert" class="alert">Data Saved!</span>
 
+    <!-- TESTING THIS -->
 
+    <!-- Trigger Button -->
 
-      <!-- TESTING THIS -->
-
-      <!-- Trigger Button -->
-      <button id="menu-toggle" class="toggle-btn">Upgrades</button>
-
-      <!-- Sliding Menu Panel -->
-      <nav id="sliding-menu" class="side-menu">
-      <button id="menu-close" class="close-btn">×</button>
-      <ul>
-        <li><a id="upgrade1Display">+1 cps <span id="upgrade1Cost">1</span></a></li>
-        <li><a id="upgrade2Display">+5 cps <span id="upgrade2Cost">50</span></a></li>
-        <li><a id="upgrade3Display">+20 cps <span id="upgrade3Cost">300</span></a></li>
-        <li><a id="upgrade4Display">+100 cps <span id="upgrade4Cost">2000</span></a></li>
-      </ul>
-    </nav>
+    <!-- Sliding Menu Panel -->
 
     <!-- Background Overlay -->
-    <div id="menu-overlay" class="overlay"></div>
-  </body> <!-- End of Body -->
+  </body>
+  <!-- End of Body -->
 
   <footer>
-<!-- idk what to put here -->
+    <!-- idk what to put here -->
   </footer>
 
   <script src="scripts/script.js">
@@ -64,6 +80,7 @@
 
   <!-- Console Scripts -->
   <script src="https://unpkg.com/eruda"></script>
-  <script>eruda.init();</script>
-
+  <script>
+    eruda.init();
+  </script>
 </html>

@@ -4,107 +4,126 @@
 // console.log cannot be used because of school admin
 // DevTools are banned
 // effective barnacl
-    
 
-console.log("hi")
+setTimeout(() => {
+  console.log("hi");
 
-const defeat = new Audio('assets/audio/Defeat.mp3');
-const clickSound = new Audio('assets/audio/click.mp3');
-clickSound.volume = 0.3;
+  const defeat = new Audio("assets/audio/Defeat.mp3");
+  const clickSound = new Audio("assets/audio/click.mp3");
+  clickSound.volume = 0.3;
 
-// Actual Displayed values
-let clicks = 0;
+  // Actual Displayed values
+  let clicks = 0;
 
-let nullFragments = 0;
-// Click Per Second Upgrades
-let upgrade1Amount = 0;
-let upgrade1Cost = 1;
-let upgrade2Amount = 0;
-let upgrade2Cost = 50;
-let upgrade3Amount = 0;
-let upgrade3Cost = 300;
-let upgrade4Amount = 0;
-let upgrade4Cost = 2000;
+  let nullFragments = 0;
+  // Click Per Second Upgrades
+  let upgrade1Amount = 0;
+  let upgrade1Cost = 1;
+  let upgrade2Amount = 0;
+  let upgrade2Cost = 50;
+  let upgrade3Amount = 0;
+  let upgrade3Cost = 300;
+  let upgrade4Amount = 0;
+  let upgrade4Cost = 2000;
 
-const upgradeTree = [];
-const storedData = JSON.parse(localStorage.getItem("clickerData"));
+  const storedData = JSON.parse(localStorage.getItem("clickerData"));
+  const ownedUpgrades = storedData
+    ? (storedData.ownedUpgrades ?? ["none"])
+    : ["none"];
+  const storedRepeatableUpgrades =
+    storedData?.repeatableUpgrades ?? storedData ?? {};
+  function getStoredCost(cost, startingCost) {
+    return Number.isFinite(cost) && cost > 0 ? cost : startingCost;
+  }
 
-if (storedData) {
-    clicks = storedData.clicks ?? 0
-    nullFragments = storedData.nullFragments ?? 0
-    upgrade1Amount = storedData.upgrade1Amount ?? 0
-    upgrade1Cost = storedData.upgrade1Cost ?? 0
-    upgrade2Amount = storedData.upgrade2Amount ?? 0
-    upgrade2Cost = storedData.upgrade2Cost ?? 0
-    upgrade3Amount = storedData.upgrade3Amount ?? 0
-    upgrade3Cost = storedData.upgrade3Cost ?? 0
-    upgrade4Amount = storedData.upgrade4Amount ?? 0
-    upgrade4Cost = storedData.upgrade4Cost ?? 0
-
-}
-let clicksPerSecond = ((upgrade1Amount * 1) + (upgrade2Amount * 5) + (upgrade3Amount * 20) + (upgrade4Amount * 100));
-const data = {
+  if (storedData) {
+    clicks = storedData.clicks ?? 0;
+    nullFragments = storedData.nullFragments ?? 0;
+    upgrade1Amount = storedRepeatableUpgrades.upgrade1Amount ?? 0;
+    upgrade1Cost = getStoredCost(storedRepeatableUpgrades.upgrade1Cost, 1);
+    upgrade2Amount = storedRepeatableUpgrades.upgrade2Amount ?? 0;
+    upgrade2Cost = getStoredCost(storedRepeatableUpgrades.upgrade2Cost, 50);
+    upgrade3Amount = storedRepeatableUpgrades.upgrade3Amount ?? 0;
+    upgrade3Cost = getStoredCost(storedRepeatableUpgrades.upgrade3Cost, 300);
+    upgrade4Amount = storedRepeatableUpgrades.upgrade4Amount ?? 0;
+    upgrade4Cost = getStoredCost(storedRepeatableUpgrades.upgrade4Cost, 2000);
+  }
+  const manualClickMultiplier =
+    2 **
+    ownedUpgrades.filter((upgrade) => ["null1", "null4"].includes(upgrade))
+      .length;
+  const passiveClickMultiplier =
+    2 **
+    ownedUpgrades.filter((upgrade) => ["null2", "null5"].includes(upgrade))
+      .length;
+  const nullFragmentMultiplier =
+    2 **
+    ownedUpgrades.filter((upgrade) => ["null3", "null6"].includes(upgrade))
+      .length;
+  let clicksPerSecond =
+    (upgrade1Amount * 1 +
+      upgrade2Amount * 5 +
+      upgrade3Amount * 20 +
+      upgrade4Amount * 100) *
+    passiveClickMultiplier;
+  const data = {
     clicks: clicks,
     clicksPerSecond: clicksPerSecond,
     nullFragments: nullFragments,
-    upgradeTree: upgradeTree,
+    ownedUpgrades: ownedUpgrades,
     repeatableUpgrades: {
-        upgrade1Amount: upgrade1Amount,
-        upgrade1Cost: upgrade1Cost,
-        upgrade2Amount: upgrade2Amount,
-        upgrade2Cost: upgrade2Cost,
-        upgrade3Amount: upgrade3Amount,
-        upgrade3Cost: upgrade3Cost,
-        upgrade4Amount: upgrade4Amount,
-        upgrade4Cost: upgrade4Cost,
+      upgrade1Amount: upgrade1Amount,
+      upgrade1Cost: upgrade1Cost,
+      upgrade2Amount: upgrade2Amount,
+      upgrade2Cost: upgrade2Cost,
+      upgrade3Amount: upgrade3Amount,
+      upgrade3Cost: upgrade3Cost,
+      upgrade4Amount: upgrade4Amount,
+      upgrade4Cost: upgrade4Cost,
     },
-    upgrades: {},
-}
+  };
 
-// DOM element references for buttons and displays
+  // DOM element references for buttons and displays
 
-const upgrade1Button = document.getElementById("upgrade1Display");
-const upgrade2Button = document.getElementById("upgrade2Display");
-const upgrade3Button = document.getElementById("upgrade3Display");
-const upgrade4Button = document.getElementById("upgrade4Display");
+  const upgrade1Button = document.getElementById("upgrade1Display");
+  const upgrade2Button = document.getElementById("upgrade2Display");
+  const upgrade3Button = document.getElementById("upgrade3Display");
+  const upgrade4Button = document.getElementById("upgrade4Display");
 
-const upgrade1CostDisplay = document.getElementById("upgrade1Cost");
-const upgrade2CostDisplay = document.getElementById("upgrade2Cost");
-const upgrade3CostDisplay = document.getElementById("upgrade3Cost");
-const upgrade4CostDisplay = document.getElementById("upgrade4Cost");
+  const upgrade1CostDisplay = document.getElementById("upgrade1Cost");
+  const upgrade2CostDisplay = document.getElementById("upgrade2Cost");
+  const upgrade3CostDisplay = document.getElementById("upgrade3Cost");
+  const upgrade4CostDisplay = document.getElementById("upgrade4Cost");
 
-const clickerButton = document.getElementById("clickerButton");
-const clickDisplay = document.getElementById("clickDisplay");
-const cpsDisplay = document.getElementById("clicksPerSecond");
-const nullFragmentsDisplay = document.getElementById("nullFragments");
+  const clickerButton = document.getElementById("clickerButton");
+  const clickDisplay = document.getElementById("clickDisplay");
+  const cpsDisplay = document.getElementById("clicksPerSecond");
+  const nullFragmentsDisplay = document.getElementById("nullFragments");
 
-const startSongButton = document.getElementById("startSong");
-const stopSongButton = document.getElementById("stopSong");
+  const startSongButton = document.getElementById("startSong");
+  const stopSongButton = document.getElementById("stopSong");
 
-const resetButton = document.getElementById("resetButton");
-const saveDataButton = document.getElementById("saveData");
+  const resetButton = document.getElementById("resetButton");
+  const saveDataButton = document.getElementById("saveData");
 
-const nullifyButton = document.getElementById("nullify");
-const nullTreeButton = document.getElementById("nulltree");
+  const nullifyButton = document.getElementById("nullify");
+  const nullTreeButton = document.getElementById("nulltree");
 
-const alert = document.getElementById("alert")
+  const alert = document.getElementById("alert");
 
-
-
-
-function resetStats() {
+  function resetStats() {
     clicks = 0;
     clicksPerSecond = 0;
     upgrade1Amount = 0;
-    upgrade1Cost = 0;
+    upgrade1Cost = 1;
     upgrade2Amount = 0;
-    upgrade2Cost = 0;
+    upgrade2Cost = 50;
     upgrade3Amount = 0;
-    upgrade3Cost = 0;
+    upgrade3Cost = 300;
     upgrade4Amount = 0;
-    upgrade4Cost = 0;
-}
-function updateScreen() {
+    upgrade4Cost = 2000;
+  }
+  function updateScreen() {
     clickDisplay.textContent = Math.floor(clicks);
     cpsDisplay.textContent = clicksPerSecond;
     upgrade1CostDisplay.textContent = Math.floor(upgrade1Cost);
@@ -112,136 +131,161 @@ function updateScreen() {
     upgrade3CostDisplay.textContent = Math.floor(upgrade3Cost);
     upgrade4CostDisplay.textContent = Math.floor(upgrade4Cost);
     nullFragmentsDisplay.textContent = nullFragments;
-    console.log(clicksPerSecond)
-}
-function storeToLocal() {
-    
-    localStorage.setItem("clickerData",JSON.stringify(data))
-}
-startSongButton.addEventListener("click", () => {
+    console.log(clicksPerSecond);
+  }
+  function storeToLocal() {
+    data.clicks = clicks;
+    data.clicksPerSecond = clicksPerSecond;
+    data.nullFragments = nullFragments;
+    data.ownedUpgrades = ownedUpgrades;
+    data.repeatableUpgrades = {
+      upgrade1Amount,
+      upgrade1Cost,
+      upgrade2Amount,
+      upgrade2Cost,
+      upgrade3Amount,
+      upgrade3Cost,
+      upgrade4Amount,
+      upgrade4Cost,
+    };
+    localStorage.setItem("clickerData", JSON.stringify(data));
+  }
+
+  updateScreen();
+  storeToLocal();
+
+  startSongButton.addEventListener("click", () => {
     defeat.play();
-});
-stopSongButton.addEventListener("click", () => {
+  });
+  stopSongButton.addEventListener("click", () => {
     defeat.pause();
     defeat.currentTime = 0;
-});
-upgrade1Button.addEventListener("click", () => {
+  });
+  upgrade1Button.addEventListener("click", () => {
     if (clicks >= upgrade1Cost) {
-        clicks -= upgrade1Cost;
-        upgrade1Amount++;
-        upgrade1Cost *= 1.2;
-        upgrade1CostDisplay.textContent = Math.floor(upgrade1Cost);
-        clickDisplay.textContent = Math.floor(clicks);
+      clicks -= upgrade1Cost;
+      upgrade1Amount++;
+      upgrade1Cost *= 1.2;
+      upgrade1CostDisplay.textContent = Math.floor(upgrade1Cost);
+      clickDisplay.textContent = Math.floor(clicks);
     }
-});
-upgrade2Button.addEventListener("click", () => {
+  });
+  upgrade2Button.addEventListener("click", () => {
     if (clicks >= upgrade2Cost) {
-        clicks -= upgrade2Cost;
-        upgrade2Amount += 1;
-        upgrade2Cost *= 1.3;
-        updateScreen();
+      clicks -= upgrade2Cost;
+      upgrade2Amount += 1;
+      upgrade2Cost *= 1.3;
+      updateScreen();
     }
-
-});
-upgrade3Button.addEventListener("click", () => {
+  });
+  upgrade3Button.addEventListener("click", () => {
     if (clicks >= upgrade3Cost) {
-        clicks -= upgrade3Cost;
-        upgrade3Amount += 1;
-        upgrade3Cost *= 1.4;
-        updateScreen();
+      clicks -= upgrade3Cost;
+      upgrade3Amount += 1;
+      upgrade3Cost *= 1.4;
+      updateScreen();
     }
-
-});
-upgrade4Button.addEventListener("click", () => {
+  });
+  upgrade4Button.addEventListener("click", () => {
     if (clicks >= upgrade4Cost) {
-        clicks -= upgrade4Cost;
-        upgrade4Amount += 1;
-        upgrade4Cost *= 1.5;
-        updateScreen();
+      clicks -= upgrade4Cost;
+      upgrade4Amount += 1;
+      upgrade4Cost *= 1.5;
+      updateScreen();
     }
-
-});
-clickerButton.addEventListener("mousedown", () => {
-    clicks += 1;
+  });
+  clickerButton.addEventListener("mousedown", () => {
+    clicks += manualClickMultiplier;
     clickDisplay.textContent = Math.floor(clicks);
-    clickerButton.style.transform = "scale(0.7)"; 
+    clickerButton.style.transform = "scale(0.7)";
     clickerButton.style.transition = "transform 0.1s";
     clickerButton.style.filter = "opacity(0.4)";
     //this is where the mousedown click event is handled by the user
-});
-clickerButton.addEventListener("click", () => {
+  });
+  clickerButton.addEventListener("click", () => {
     clickDisplay.textContent = Math.floor(clicks);
-    clickerButton.style.transform = "scale(0.7)"; 
+    clickerButton.style.transform = "scale(0.7)";
     clickerButton.style.transition = "transform 0.1s";
     clickerButton.style.filter = "opacity(0.4)";
-    setTimeout(() => { 
-        clickerButton.style.transform = "scale(1)";
-        clickerButton.style.filter = "brightness(1)";
+    setTimeout(() => {
+      clickerButton.style.transform = "scale(1)";
+      clickerButton.style.filter = "brightness(1)";
     }, 100);
     clickSound.pause();
     clickSound.currentTime = 0;
     clickSound.play();
     //this is where the normal click event is handled by the user
-})
-clickerButton.addEventListener("mouseup", () => { 
+  });
+  clickerButton.addEventListener("mouseup", () => {
     clickerButton.style.transform = "scale(1)";
     clickerButton.style.filter = "brightness(1)";
     //this is where the mouseup click event is handled by the user
-});
-saveDataButton.addEventListener("click", () => {
+  });
+  saveDataButton.addEventListener("click", () => {
     localStorage.setItem("clickerData", JSON.stringify(data));
     // localStorage is working yay
-    alert.classList.add("unhideAlert")
+    alert.classList.add("unhideAlert");
     setTimeout(() => {
-        alert.classList.remove("unhideAlert")
+      alert.classList.remove("unhideAlert");
     }, 1000);
-    
-});
-nullifyButton.addEventListener("click", () => {
+  });
+  nullifyButton.addEventListener("click", () => {
     if (clicks >= 1000) {
-        nullFragments += Math.floor(clicks / 1000);
-        nullFragmentsDisplay.textContent = nullFragments;
-        alert("You have nullified your progress and gained " + Math.floor(clicks / 1000) + " null fragments!");
-        resetStats();
-        updateScreen();
+      const fragmentsGained =
+        Math.floor(clicks / 1000) * nullFragmentMultiplier;
+      nullFragments += fragmentsGained;
+      nullFragmentsDisplay.textContent = nullFragments;
+      window.alert(
+        "You have nullified your progress and gained " +
+          fragmentsGained +
+          " null fragments!",
+      );
+      resetStats();
+      updateScreen();
     }
-});
+  });
 
-setInterval(() => { //ONE SEC INTERVAL
-    clicksPerSecond = ((upgrade1Amount * 1) + (upgrade2Amount * 5) + (upgrade3Amount * 20) + (upgrade4Amount * 100));
+  setInterval(() => {
+    //ONE SEC INTERVAL
+    clicksPerSecond =
+      (upgrade1Amount * 1 +
+        upgrade2Amount * 5 +
+        upgrade3Amount * 20 +
+        upgrade4Amount * 100) *
+      passiveClickMultiplier;
     clicks += clicksPerSecond;
     updateScreen();
-}, 1000);
+  }, 1000);
 
-setInterval(() => {
-    localStorage.setItem("clickerData",JSON.stringify(data))
-    alert.classList.add("unhideAlert")
+  setInterval(() => {
+    storeToLocal();
+    alert.classList.add("unhideAlert");
     setTimeout(() => {
-        alert.classList.remove("unhideAlert")
+      alert.classList.remove("unhideAlert");
     }, 1000);
-},60000)
+  }, 60000);
 
-nullTreeButton.addEventListener("click", () => {
-    localStorage.setItem("clickerData", JSON.stringify(data));
+  nullTreeButton.addEventListener("click", () => {
+    storeToLocal();
     window.location.href = "pages/nulltree.html";
-});
-resetButton.addEventListener("click", () => {
-    if (confirm("Are you sure you want to reset your progress? This cannot be undone.")) {
-        localStorage.removeItem("clickerData");
-        nullFragments = 0;
-        resetStats();
-        updateScreen();
-        localStorage.setItem("clickerData", JSON.stringify(data));
+  });
+  resetButton.addEventListener("click", () => {
+    if (
+      window.confirm(
+        "Are you sure you want to reset your progress? This cannot be undone.",
+      )
+    ) {
+      localStorage.removeItem("clickerData");
+      nullFragments = 0;
+
+      resetStats();
+      updateScreen();
+
+      storeToLocal();
     }
-});
+  });
 
+  // TEST
 
-
-
-
-
-// TEST
-
-// TEST
-
-// }, 1000);
+  // TEST
+}, 100);
